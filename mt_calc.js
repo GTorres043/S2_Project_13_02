@@ -33,13 +33,57 @@
 
 */
 window.onload = init;
-
+//
 function init() {
       var calcButtons = document.getElementsByClassName("calcButton");
       for (var i = 0; i < calcButtons.length; i++) {
-            calcButtons[i].addEventListener("click", buttonClick);
+            calcButtons[i].onclick = buttonClick;
       }
-      document.getElementById("calcWindow")
+      document.getElementById("calcWindow").onkeydown = calcKeys;
+}
+
+//this activates the buttons on the calculator on the webpage
+function buttonClick(e) {
+      var calcValue = document.getElementById("calcWindow").value;
+      var calcDecimal = document.getElementById("decimals").value;
+      var buttonValue = e.target.value;
+      switch (buttonValue) {
+            case "del":
+                  calcValue = "";
+                  break;
+            case "bksp":
+                  calcValue = eraseChar(calcValue);
+                  break;
+            case "enter":
+                  calcValue += " = " + evalEq(calcValue, calcDecimal) + "\n";
+                  break;
+            case "prev":
+                  calcValue += lastEq(calcValue);
+                  break;
+            default:
+                  calcValue += buttonValue;
+                  break;
+      }
+      document.getElementById("calcWindow").value = calcValue;
+      document.getElementById("calcWindow").focus();
+}
+
+function calcKeys(e) {
+      var calcValue = document.getElementById("calcWindow").value;
+      var calcDecimal = document.getElementById("decimals").value;
+
+      switch (e.key) {
+            case "Delete":
+                  calcValue = "";
+                  break;
+            case "Enter":
+                  calcValue = " = " + evalEq(calcValue, calcDecimal);
+                  break;
+            case "ArrowUp":
+                  calcValue += lastEq(calcValue);
+                  e.preventDefault();
+      }
+      document.getElementById("calcWindow").value = calcValue;
 }
 
 
