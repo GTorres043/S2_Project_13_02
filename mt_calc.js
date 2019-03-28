@@ -33,7 +33,7 @@
 
 */
 window.onload = init;
-//
+//starts off the webpage and the buttons
 function init() {
       var calcButtons = document.getElementsByClassName("calcButton");
       for (var i = 0; i < calcButtons.length; i++) {
@@ -42,7 +42,7 @@ function init() {
       document.getElementById("calcWindow").onkeydown = calcKeys;
 }
 
-//this activates the buttons on the calculator on the webpage
+//this activates the buttons on the calculator on the webpage 
 function buttonClick(e) {
       var calcValue = document.getElementById("calcWindow").value;
       var calcDecimal = document.getElementById("decimals").value;
@@ -67,7 +67,7 @@ function buttonClick(e) {
       document.getElementById("calcWindow").value = calcValue;
       document.getElementById("calcWindow").focus();
 }
-
+//activate the keys using an event and switch-cases it uses this by using keys on the keyboard
 function calcKeys(e) {
       var calcValue = document.getElementById("calcWindow").value;
       var calcDecimal = document.getElementById("decimals").value;
